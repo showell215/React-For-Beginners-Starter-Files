@@ -1,6 +1,6 @@
 import React from 'react';
 
-// import base from '../base';
+import base from '../base';
 
 import Header from './Header';
 import Inventory from './Inventory';
@@ -27,11 +27,11 @@ class App extends React.Component {
 
     componentWillMount () {
         // this runs right before the app is rendered
-        // this.ref = base.syncState(`${this.props.params.storeId}/fishes`,
-        // {
-        //     context: this,
-        //     state: 'fishes'
-        // });
+        this.ref = base.syncState(`${this.props.params.storeId}/fishes`,
+        {
+            context: this,
+            state: 'fishes'
+        });
         // order in localStorage?
         const localStorageRef = localStorage.getItem(`order-${this.props.params.storeId}`);
         
@@ -48,7 +48,7 @@ class App extends React.Component {
     }
 
     componentWillUnmount () {
-        // base.removeBinding(this.ref);
+        base.removeBinding(this.ref);
     }
 
     addFish (fish) {
@@ -67,8 +67,8 @@ class App extends React.Component {
     
     removeFish (key) {
         const fishes = {...this.state.fishes};
-        // fishes[key] = null;
-        delete fishes[key];
+        fishes[key] = null; // Firebase needs this to be null, not deleted
+        // delete fishes[key];
         this.setState({fishes});
     }
 
@@ -117,6 +117,7 @@ class App extends React.Component {
                     fishes={this.state.fishes}
                     updateFish={this.updateFish}
                     removeFish={this.removeFish}
+                    storeId={this.props.params.storeId}
                 />
             </div>
         );
