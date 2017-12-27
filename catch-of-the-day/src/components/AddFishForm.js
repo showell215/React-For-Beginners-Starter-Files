@@ -11,7 +11,6 @@ class AddFishForm extends React.Component {
             desc: this.desc.value,
             image: this.image.value
         }
-        console.log(fish);
         this.props.addFish(fish);
         this.fishForm.reset();
     }
@@ -30,6 +29,10 @@ class AddFishForm extends React.Component {
             </form>
         );
     }
+}
+
+AddFishForm.propTypes = {
+    addFish: React.PropTypes.func.isRequired
 }
 
 export default AddFishForm;

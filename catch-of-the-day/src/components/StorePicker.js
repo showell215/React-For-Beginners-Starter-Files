@@ -13,9 +13,6 @@ class StorePicker extends React.Component {
     goToStore (event) {
         event.preventDefault();
         // grab text from box
-        console.log("changed url");
-        // transition to /store/:storeId
-        console.log(this.storeInput.value);
         // since BrowserRouter is at root levl, we can expose to any component
         // uses HTML5 PushState to change URL w/o reloading page!
         this.context.router.transitionTo(`/store/${this.storeInput.value}`);
